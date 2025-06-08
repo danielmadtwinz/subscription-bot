@@ -22,7 +22,7 @@ describe('Telegram bot', () => {
   });
 
   test('handles /start command', () => {
-    process.env.TELEGRAM_BOT_TOKEN = 'testtoken';
+    process.env.BOT_TOKEN = 'testtoken';
     initializeBot();
     const handler = TelegramBot.__handlers.find(h => h.regex.test('/start'));
     expect(handler).toBeDefined();
@@ -34,7 +34,7 @@ describe('Telegram bot', () => {
   });
 
   test('ignores unknown command', () => {
-    process.env.TELEGRAM_BOT_TOKEN = 'testtoken';
+    process.env.BOT_TOKEN = 'testtoken';
     initializeBot();
     const handler = TelegramBot.__handlers.find(h => h.regex.test('/start'));
     expect(handler).toBeDefined();
