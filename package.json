@@ -1,0 +1,19 @@
+{
+  "name": "subscription-bot",
+  "version": "1.0.0",
+  "description": "Telegram bot for subscription management",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "node src/main.js",
+    "dev": "nodemon src/main.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "node-telegram-bot-api": "^0.61.0",
+    "dotenv": "^16.3.1",
+    "pg": "^8.11.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
