@@ -1,0 +1,35 @@
+name: Run Jest Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    env:
+      NODE_ENV: test
+      BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      ZENKY_TOKEN: ${{ secrets.ZENKY_TOKEN }}
+      X_STORE_ID: ${{ secrets.X_STORE_ID }}
+      RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
+      RENDER_SERVICE_ID: ${{ secrets.RENDER_SERVICE_ID }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm test
