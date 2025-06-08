@@ -1,4 +1,4 @@
-require('dotenv').config({ path: '.env.test' });
+require('dotenv').config({ path: '.env.test.example' });
 if (!process.env.DATABASE_URL) {
   process.env.DATABASE_URL = 'postgres://postgres:secret@localhost:5432/subscription_db_test';
 }
@@ -6,11 +6,7 @@ const { pool, initDb } = require('../src/db');
 
 describe('Database connection', () => {
   beforeAll(async () => {
-    try {
-      await initDb();
-    } catch (err) {
-      // ignore init errors
-    }
+    await initDb();
   });
 
   test('connects to PostgreSQL', async () => {

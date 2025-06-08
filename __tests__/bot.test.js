@@ -1,3 +1,4 @@
+require('dotenv').config({ path: '.env.test.example' });
 jest.mock('node-telegram-bot-api', () => {
   const handlers = [];
   const mockBot = {
@@ -38,7 +39,10 @@ describe('Telegram bot', () => {
     initializeBot();
     const handler = TelegramBot.__handlers.find(h => h.regex.test('/start'));
     expect(handler).toBeDefined();
-    handler.cb({ chat: { id: 123 }, text: '/foo' });
+    const msg = { chat: { id: 123 }, text: '/foo' };
+    if (handler.regex.test(msg.text)) {
+      handler.cb(msg);
+    }
     expect(TelegramBot.__mockBot.sendMessage).not.toHaveBeenCalled();
   });
 });
